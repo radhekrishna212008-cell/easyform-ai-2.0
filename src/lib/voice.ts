@@ -77,7 +77,7 @@ export function speak(text: string, opts: SpeakOpts = {}) {
     if (v) u.voice = v;
     u.lang = v?.lang || (which === "hi" ? "hi-IN" : "en-IN");
     u.rate = opts.rate ?? 0.95;
-    u.pitch = opts.pitch ?? 1.08;
+    u.pitch = opts.pitch ?? 1;
     u.onstart = () => opts.onStart?.();
     u.onend = () => opts.onEnd?.();
     u.onerror = () => opts.onEnd?.();
@@ -115,7 +115,7 @@ export async function speakBilingual(en: string, hi: string, opts: SpeakOpts = {
       if (v) u.voice = v;
       u.lang = v?.lang || (q.lang === "hi" ? "hi-IN" : "en-IN");
       u.rate = opts.rate ?? 0.95;
-      u.pitch = opts.pitch ?? 1.08;
+      u.pitch = opts.pitch ?? 1;
       if (i === 0) u.onstart = () => opts.onStart?.();
       if (i === total - 1) {
         u.onend = () => opts.onEnd?.();

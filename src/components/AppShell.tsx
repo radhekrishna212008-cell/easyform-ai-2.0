@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Sparkles, Home, Compass, Layers, LayoutDashboard, User, MessageSquareCode, Globe } from "lucide-react";
+import { Sparkles, Home, Compass, Layers, LayoutDashboard, User, MessageSquareCode, Globe, Music } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { AIAssistantDrawer } from "@/components/AIAssistantDrawer";
 
@@ -26,6 +26,7 @@ export function AppShell({
 
   const navItems = [
     { to: "/", icon: Home, labelEn: "Home", labelHi: "होम" },
+    { to: "/studio", icon: Music, labelEn: "Studio", labelHi: "स्टूडियो" },
     { to: "/discovery", icon: Compass, labelEn: "Discover", labelHi: "खोजें" },
     { to: "/exams", icon: Layers, labelEn: "Forms", labelHi: "फॉर्म्स" },
     { to: "/dashboard", icon: LayoutDashboard, labelEn: "Dashboard", labelHi: "डैशबोर्ड" },

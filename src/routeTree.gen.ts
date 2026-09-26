@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as UploadRouteImport } from './routes/upload'
+import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReadyRouteImport } from './routes/ready'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -34,6 +35,11 @@ const VerifyRoute = VerifyRouteImport.update({
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/ready': typeof ReadyRoute
   '/settings': typeof SettingsRoute
+  '/studio': typeof StudioRoute
   '/upload': typeof UploadRoute
   '/verify': typeof VerifyRoute
   '/checklist/$examId': typeof ChecklistExamIdRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/ready': typeof ReadyRoute
   '/settings': typeof SettingsRoute
+  '/studio': typeof StudioRoute
   '/upload': typeof UploadRoute
   '/verify': typeof VerifyRoute
   '/checklist/$examId': typeof ChecklistExamIdRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/ready': typeof ReadyRoute
   '/settings': typeof SettingsRoute
+  '/studio': typeof StudioRoute
   '/upload': typeof UploadRoute
   '/verify': typeof VerifyRoute
   '/checklist/$examId': typeof ChecklistExamIdRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/ready'
     | '/settings'
+    | '/studio'
     | '/upload'
     | '/verify'
     | '/checklist/$examId'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/ready'
     | '/settings'
+    | '/studio'
     | '/upload'
     | '/verify'
     | '/checklist/$examId'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/ready'
     | '/settings'
+    | '/studio'
     | '/upload'
     | '/verify'
     | '/checklist/$examId'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   ReadyRoute: typeof ReadyRoute
   SettingsRoute: typeof SettingsRoute
+  StudioRoute: typeof StudioRoute
   UploadRoute: typeof UploadRoute
   VerifyRoute: typeof VerifyRoute
   ChecklistExamIdRoute: typeof ChecklistExamIdRoute
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/upload'
       fullPath: '/upload'
       preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -366,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   ReadyRoute: ReadyRoute,
   SettingsRoute: SettingsRoute,
+  StudioRoute: StudioRoute,
   UploadRoute: UploadRoute,
   VerifyRoute: VerifyRoute,
   ChecklistExamIdRoute: ChecklistExamIdRoute,

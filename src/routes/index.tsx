@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SarthiAvatar } from "@/components/AppShell";
-import { ArrowRight, Settings, Sparkles, ShieldCheck, Mic, Compass, LayoutDashboard, CheckCircle2, Globe, FileCheck2, ExternalLink } from "lucide-react";
+import { ArrowRight, Settings, Sparkles, ShieldCheck, Mic, Compass, LayoutDashboard, CheckCircle2, Globe, FileCheck2, ExternalLink, Music, Headphones } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useVoice } from "@/hooks/useVoice";
 import { speak as speakRaw, stopSpeaking } from "@/lib/voice";
@@ -148,6 +148,34 @@ function Welcome() {
             <span>{lang === "hi" ? "मेरा डैशबोर्ड" : "My Dashboard"}</span>
           </Link>
         </div>
+
+        {/* AI Music & Vocal Studio Feature Card */}
+        <Link
+          to="/studio"
+          className="flex items-center gap-3.5 rounded-3xl glass border border-primary/40 bg-primary/5 p-4 shadow-card hover:border-primary/70 transition-all group"
+        >
+          <div className="grid h-12 w-12 place-items-center rounded-2xl gradient-hero text-primary-foreground shadow-glow group-hover:scale-105 transition-transform shrink-0">
+            <Music className="h-6 w-6" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                New Studio Suite
+              </span>
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-0.5">
+                <ShieldCheck className="h-3 w-3" />
+                Original Voice Intact
+              </span>
+            </div>
+            <h3 className="text-sm font-bold text-foreground mt-0.5">
+              AI Music & Vocal Studio
+            </h3>
+            <p className="text-[11px] text-muted-foreground truncate">
+              Lyrics Writer · Instrumental Backing Tracks · Clean Vocal Enhancer · Dual-Track Mixer
+            </p>
+          </div>
+          <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform shrink-0" />
+        </Link>
       </div>
 
       {/* 6-Step Visual Flow */}
