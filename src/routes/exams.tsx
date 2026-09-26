@@ -125,7 +125,7 @@ function Exams() {
           </h1>
           <p className="mt-1 text-xs text-muted-foreground">
             {lang === "hi"
-              ? "50+ श्रेणियाँ — EasyForm AI हर स्टेप पर पात्रता, दस्तावेज़ और पोर्टल का मार्गदर्शन देगा।"
+              ? "50+ श्रेणियाँ — EasyForm AI हर स्टेप पर पात्रता, दस्तावेज़ और पोर्टल का मार्गदर्शन देगी।"
               : "50+ categories with instant eligibility checks, checklists, and official portals."}
           </p>
         </div>

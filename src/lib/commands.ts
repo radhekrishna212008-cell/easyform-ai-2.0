@@ -57,35 +57,35 @@ const REPLIES: Record<Intent, { en: string; hi: string }> = {
   },
   verify: {
     en: "Okay, starting verification. Please wait.",
-    hi: "ठीक है, वेरिफिकेशन शुरू कर रहा हूँ। कृपया प्रतीक्षा कीजिए।",
+    hi: "ठीक है, वेरिफिकेशन शुरू कर रही हूँ। कृपया प्रतीक्षा कीजिए।",
   },
   upload: {
     en: "Opening the Upload screen. Upload your documents one by one.",
-    hi: "Upload स्क्रीन खोल रहा हूँ। अपने दस्तावेज़ एक-एक करके अपलोड कीजिए।",
+    hi: "Upload स्क्रीन खोल रही हूँ। अपने दस्तावेज़ एक-एक करके अपलोड कीजिए।",
   },
   exams: {
     en: "Opening the category list. Please pick your form.",
-    hi: "श्रेणी सूची खोल रहा हूँ। अपना फॉर्म चुनिए।",
+    hi: "श्रेणी सूची खोल रही हूँ। अपना फॉर्म चुनिए।",
   },
   next: {
     en: "Okay, moving to the next step.",
-    hi: "ठीक है, अगले स्टेप पर ले जा रहा हूँ।",
+    hi: "ठीक है, अगले स्टेप पर ले जा रही हूँ।",
   },
   errors: {
     en: "Opening the Issues screen so you can review all warnings.",
-    hi: "Issues स्क्रीन खोल रहा हूँ, वहाँ आप सारी warnings देख सकते हैं।",
+    hi: "Issues स्क्रीन खोल रही हूँ, वहाँ आप सारी warnings देख सकते हैं।",
   },
   ready: {
     en: "You can now go to the official website. Opening the Ready screen.",
-    hi: "आप अब official website पर जा सकते हैं। Ready स्क्रीन खोल रहा हूँ।",
+    hi: "आप अब official website पर जा सकते हैं। Ready स्क्रीन खोल रही हूँ।",
   },
   greet: {
     en: "Hi! I am EasyForm AI. You can ask: which documents are needed, how to upload a photo, or start verification.",
-    hi: "नमस्ते! मैं EasyForm AI हूँ। आप पूछ सकते हैं: कौन से दस्तावेज़ चाहिए, फोटो कैसे अपलोड करें, या वेरिफिकेशन शुरू करें।",
+    hi: "नमस्ते! मैं EasyForm AI सहायिका हूँ। आप पूछ सकते हैं: कौन से दस्तावेज़ चाहिए, फोटो कैसे अपलोड करें, या वेरिफिकेशन शुरू करें।",
   },
   fallback: {
     en: "Sorry, I didn't catch that. You can ask: which documents are needed, how to upload a photo, or start verification.",
-    hi: "माफ़ कीजिए, मैं समझ नहीं पाया। आप पूछ सकते हैं: कौन से दस्तावेज़ चाहिए, फोटो कैसे अपलोड करें, या वेरिफिकेशन शुरू करें।",
+    hi: "माफ़ कीजिए, मैं समझ नहीं पाई। आप पूछ सकते हैं: कौन से दस्तावेज़ चाहिए, फोटो कैसे अपलोड करें, या वेरिफिकेशन शुरू करें।",
   },
 };
 
@@ -111,7 +111,7 @@ export function parseCommand(raw: string): CommandResult {
       try { setSelectedCategory(cat.id); } catch { /* ignore */ }
       return {
         replyEn: `${cat.name} selected. I will guide you through every step.`,
-        replyHi: `आपने ${cat.name} चुना है। मैं आपको हर स्टेप पर मार्गदर्शन करूँगा।`,
+        replyHi: `आपने ${cat.name} चुना है। मैं आपको हर स्टेप पर मार्गदर्शन करूँगी।`,
         navigateToPath: `/guidance/${cat.id}`,
       };
     }

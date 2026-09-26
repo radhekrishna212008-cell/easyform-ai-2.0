@@ -32,7 +32,7 @@ export function AIAssistantDrawer({
       from: "ai",
       text:
         lang === "hi"
-          ? `नमस्ते! मैं EasyForm AI हूँ। आप मुझसे पात्रता, दस्तावेज़, एरर या ऑफिशियल पोर्टल के बारे में कुछ भी पूछ सकते हैं।`
+          ? `नमस्ते! मैं EasyForm AI सहायिका हूँ। आप मुझसे पात्रता, दस्तावेज़, एरर या ऑफिशियल पोर्टल के बारे में कुछ भी पूछ सकते हैं।`
           : `Hello! I'm EasyForm AI. Ask me anything about your documents, eligibility, issues, or official portals.`,
     },
   ]);

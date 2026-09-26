@@ -19,7 +19,7 @@ export const Route = createFileRoute("/guidance/$examId")({
 function introMessages(name: string, hi: boolean) {
   if (hi) {
     return [
-      { from: "ai" as const, text: `नमस्ते! मैं EasyForm AI हूँ। आपने ${name} चुना है — मैं आपकी पूरी मदद करूँगा।` },
+      { from: "ai" as const, text: `नमस्ते! मैं EasyForm AI हूँ। आपने ${name} चुना है — मैं आपकी पूरी मदद करूँगी।` },
       { from: "ai" as const, text: "सबसे पहले 'Check Eligibility' पर टैप करके अपनी आयु और योग्यता की पुष्टि कर लें।" },
       { from: "ai" as const, text: "इसके बाद हम आपके लिए अनुकूलित दस्तावेज़ चेकलिस्ट तैयार करेंगे।" },
     ];
@@ -48,7 +48,7 @@ function Guidance() {
     setSelectedCategory(examId);
     speakBilingual(
       `${name} selected. I will guide you through every step of your preparation.`,
-      `आपने ${name} चुना है। मैं तैयारी के हर स्टेप पर आपका मार्गदर्शन करूँगा।`,
+      `आपने ${name} चुना है। मैं तैयारी के हर स्टेप पर आपका मार्गदर्शन करूँगी।`,
     );
   }, [examId, name, speakBilingual]);
 
@@ -64,11 +64,11 @@ function Guidance() {
     if (lower.includes("eligible") || lower.includes("eligibility") || lower.includes("patra")) {
       target = `/eligibility/${examId}`;
       replyEn = "Opening the Eligibility Checker so we can evaluate your age and qualification criteria.";
-      replyHi = "पात्रता जाँच स्क्रीन खोल रहा हूँ ताकि आयु और शैक्षणिक योग्यता की पुष्टि कर सकें।";
+      replyHi = "पात्रता जाँच स्क्रीन खोल रही हूँ ताकि आयु और शैक्षणिक योग्यता की पुष्टि कर सकें।";
     } else if (lower.includes("checklist") || lower.includes("document") || lower.includes("dastavej") || lower.includes("kaagaz")) {
       target = `/checklist/${examId}`;
       replyEn = `For ${name}, you will need ${checklist.required.length} required documents. Opening checklist.`;
-      replyHi = `${name} के लिए आपको ${checklist.required.length} अनिवार्य दस्तावेज़ चाहिए। चेकलिस्ट खोल रहा हूँ।`;
+      replyHi = `${name} के लिए आपको ${checklist.required.length} अनिवार्य दस्तावेज़ चाहिए। चेकलिस्ट खोल रही हूँ।`;
     } else {
       const parsed = parseCommand(transcript);
       replyEn = parsed.replyEn;
@@ -90,7 +90,7 @@ function Guidance() {
   useEffect(() => {
     if (noSpeechTick === 0) return;
     const en = "Sorry, I didn't catch that. Please say it again.";
-    const hi = "माफ़ कीजिए, मैं सुन नहीं पाया। कृपया दोबारा बोलिए।";
+    const hi = "माफ़ कीजिए, मैं सुन नहीं पाई। कृपया दोबारा बोलिए।";
     setChat((c) => [...c, { from: "ai", text: lang === "hi" ? hi : en }]);
     speakBilingual(en, hi);
   }, [noSpeechTick, speakBilingual, lang]);

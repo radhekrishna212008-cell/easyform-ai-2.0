@@ -24,19 +24,27 @@ export function setVoiceEnabled(on: boolean) {
 function pickVoiceFor(lang: "en" | "hi"): SpeechSynthesisVoice | null {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
   const voices = window.speechSynthesis.getVoices();
-  console.log(voices);
   if (!voices.length) return null;
+
   if (lang === "hi") {
+    // Priority: Female Hindi voices (Microsoft Swara, Microsoft Kalpana, Google हिन्दी, Lekha, Heera, etc.)
     return (
-  voices.find((v) => v.name.includes("Kalpana")) ||
-  voices.find((v) => /hi-IN|hi_IN|^hi\b/i.test(v.lang)) ||
-  voices.find((v) => /en-IN/i.test(v.lang)) ||
-  voices[0]
-);
+      voices.find((v) => /hi-IN|hi_IN|^hi\b/i.test(v.lang) && /swara|kalpana|kavya|lekha|heera|neerja|female|google/i.test(v.name)) ||
+      voices.find((v) => /swara|kalpana|kavya|lekha/i.test(v.name)) ||
+      voices.find((v) => /hi-IN|hi_IN|^hi\b/i.test(v.lang) && !/male|david|ravi|george|mark/i.test(v.name)) ||
+      voices.find((v) => /hi-IN|hi_IN|^hi\b/i.test(v.lang)) ||
+      voices.find((v) => /en-IN/i.test(v.lang) && /swara|heera|neerja|female/i.test(v.name)) ||
+      voices.find((v) => /female|zira|jenny|samantha|aria|sonia/i.test(v.name)) ||
+      voices[0]
+    );
   }
+
+  // English: Female Indian English or Female English
   return (
-    voices.find((v) => /en-IN/i.test(v.lang)) ||
-    voices.find((v) => /^en\b/i.test(v.lang)) ||
+    voices.find((v) => /en-IN/i.test(v.lang) && /swara|neerja|heera|kavya|female/i.test(v.name)) ||
+    voices.find((v) => /en-IN/i.test(v.lang) && !/male|prabhat|ravi|george/i.test(v.name)) ||
+    voices.find((v) => /^en/i.test(v.lang) && /female|zira|jenny|samantha|aria|sonia|victoria|karen/i.test(v.name)) ||
+    voices.find((v) => /^en/i.test(v.lang) && !/male|david|mark|george/i.test(v.name)) ||
     voices[0]
   );
 }
@@ -69,7 +77,7 @@ export function speak(text: string, opts: SpeakOpts = {}) {
     if (v) u.voice = v;
     u.lang = v?.lang || (which === "hi" ? "hi-IN" : "en-IN");
     u.rate = opts.rate ?? 0.95;
-    u.pitch = opts.pitch ?? 1;
+    u.pitch = opts.pitch ?? 1.08;
     u.onstart = () => opts.onStart?.();
     u.onend = () => opts.onEnd?.();
     u.onerror = () => opts.onEnd?.();
@@ -105,9 +113,9 @@ export async function speakBilingual(en: string, hi: string, opts: SpeakOpts = {
       const u = new SpeechSynthesisUtterance(q.text);
       const v = pickVoiceFor(q.lang);
       if (v) u.voice = v;
-      u.lang = u.lang = v?.lang || (q.lang === "hi" ? "hi-IN" : "en-IN");
+      u.lang = v?.lang || (q.lang === "hi" ? "hi-IN" : "en-IN");
       u.rate = opts.rate ?? 0.95;
-      u.pitch = opts.pitch ?? 1;
+      u.pitch = opts.pitch ?? 1.08;
       if (i === 0) u.onstart = () => opts.onStart?.();
       if (i === total - 1) {
         u.onend = () => opts.onEnd?.();
